@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+}
+#addEmployee {
+  margin-top: 100px;
+  margin-left: 10px;
+}
+.table {
+  max-width: 100%;
+  margin: auto;
+}
+.employee-data {
+  max-width: 80%;
+  margin: auto;
+}
+h2 {
+  color: white;
+}
+.header__icons {
+  padding: 1.2rem;
+  color: red !important;
+}
+#locations_wrapper {
+  display: none;
+}
+#department_wrapper {
+  display: none;
+}
