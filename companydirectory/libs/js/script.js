@@ -23,7 +23,7 @@
 
 
         $.ajax({
-          url:  "./libs/php/getallDepartments.php",
+          url:  "companydirectory/libs/php/getallDepartments.php",
           type: 'POST',
           dataType: 'json',
       
@@ -55,7 +55,7 @@
           }
       })
       $.ajax({
-        url:  "./libs/php/getLocation.php",
+        url:  "companydirectory/libs/php/getLocation.php",
         type: 'POST',
         dataType: 'json',
     
@@ -349,7 +349,7 @@ $('#departmentTable tbody').on( 'click', '#deleteDepartmentButton', function () 
   $('#deleterDep').prop("value", idToDelDep)
 
   $.ajax({
-    url:  "./libs/php/getall.php",
+    url:  "companydirectory/libs/php/getall.php",
     type: 'POST',
     dataType: 'json',
   
@@ -427,7 +427,7 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function () {
   $('#viewLocsInDepartment').html(data.location)
 
   $.ajax({
-    url:  "./libs/php/getall.php",
+    url:  "companydirectory/libs/php/getall.php",
     type: 'POST',
     dataType: 'json',
   
@@ -471,7 +471,7 @@ $('#locationTable tbody').on( 'click', '#viewLocationButton', function () {
 //} );
 
 $.ajax({
-  url:  "./libs/php/getallDepartments.php",
+  url:  "companydirectory/libs/php/getallDepartments.php",
   type: 'POST',
   dataType: 'json',
 
@@ -509,7 +509,7 @@ console.log('wprking')
 $('#locationTable tbody').on( 'click', '#deleteLocationButton', function () {
   var data = locationTableS.row( $(this).parents('tr') ).data();
   $.ajax({
-    url:  "./libs/php/getallDepartments.php",
+    url:  "companydirectory/libs/php/getallDepartments.php",
     type: 'POST',
     dataType: 'json',
   
