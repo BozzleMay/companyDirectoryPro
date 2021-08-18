@@ -1,2 +1,0 @@
-# companyDirectoryPro
-Company Directory Database
