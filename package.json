@@ -1,0 +1,23 @@
+{
+  "name": "companydirectorypro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BozzleMay/companyDirectoryPro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BozzleMay/companyDirectoryPro/issues"
+  },
+  "homepage": "https://github.com/BozzleMay/companyDirectoryPro#readme"
+},
+"engines": {
+  "node": "14.15.4"
+}
