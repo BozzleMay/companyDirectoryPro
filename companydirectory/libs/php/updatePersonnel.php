@@ -126,7 +126,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         mysqli_close($link);
     }  else{
         // URL doesn't contain id parameter. Redirect to error page
-        header("location: ../../index.html");
+        header("location: ../../../index.html");
         exit();
     }
 }

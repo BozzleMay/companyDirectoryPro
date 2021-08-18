@@ -41,7 +41,7 @@
 	$query->bind_param("i", $_REQUEST['id']);
 
 	if($query->execute());{
-	header("location: ../../index.html");
+	header("location: ../../../index.html");
 	exit();
 } 
 

@@ -36,7 +36,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records updated successfully. Redirect to landing page
-                header("location: ../../index.html");
+                header("location: ../../../index.html");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
