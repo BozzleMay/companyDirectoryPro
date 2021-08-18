@@ -1,9 +1,21 @@
 * {
   margin: 0;
 }
+body {
+  background-color: rgb(248, 248, 255);
+}
 #addEmployee {
   margin-top: 100px;
   margin-left: 10px;
+}
+h4 {
+  color: white;
+}
+.navbar {
+  background-color: #e0b0ff;
+}
+.modal-header {
+  background-color: #e0b0ff;
 }
 .table {
   max-width: 100%;
@@ -20,9 +32,77 @@ h2 {
   padding: 1.2rem;
   color: red !important;
 }
-#locations_wrapper {
+#location_wrapper {
   display: none;
 }
 #department_wrapper {
   display: none;
+}
+.idman {
+  display: none;
+}
+table.dataTable {
+  width: 100% !important;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.addDeetsButton {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.dataTables_wrapper {
+  position: relative;
+  top: 0.8rem;
+}
+table.dataTable tbody tr {
+  white-space: nowrap;
+}
+.addFooter {
+  display: flex;
+  justify-content: flex-end;
+  width: 97%;
+}
+@media screen and (max-width: 1045px) and (min-width: 835px) {
+  .priority-5 {
+    display: none;
+  }
+  #myTable td:nth-child(3) {
+    display: none;
+  }
+}
+#myTable td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+#locationTable td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+#departmentTable td:nth-child(3) {
+  width: 15%;
+  text-align: center;
+}
+.modal-content {
+  padding-bottom: 1rem;
+}
+.card-header {
+  background-color: #e0b0ff;
+}
+.viewCard {
+  background-color: transparent;
+}
+.mt-4 {
+  margin-top: 1rem !important;
+}
+.fa-eye:hover {
+  transform: scale(2);
+}
+.fa-pencil:hover {
+  transform: scale(2);
+}
+.fa-trash:hover {
+  transform: scale(2);
 }
