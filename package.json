@@ -11,13 +11,15 @@
     "type": "git",
     "url": "git+https://github.com/BozzleMay/companyDirectoryPro.git"
   },
+"engines": {
+  "node": "14.15.4"
+},
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BozzleMay/companyDirectoryPro/issues"
   },
   "homepage": "https://github.com/BozzleMay/companyDirectoryPro#readme"
-},
-"engines": {
-  "node": "14.15.4"
+  
 }
+
