@@ -3,8 +3,8 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$firstName = $lastName = $email = $jobTitle = $department = "";
-$firstName_err = $lastName_err = $email_err = $jobTitle = "";
+$newLocation = "";
+
 
  
 // Processing form data when form is submitted
@@ -12,56 +12,23 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Get hidden input value
     $id = $_POST["id"];
     
-    // Validate name
-    $input_firstName = trim($_POST["firstName"]);
-    if(empty($input_firstName)){
-        $firstName_err = "Please enter a name.";
-    } elseif(!filter_var($input_firstName, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $firstName_err = "Please enter a valid name.";
-    } else{
-        $firstName = $input_firstName;
-    }
-    
-    // Validate address address
-    $input_lastName = trim($_POST["lastName"]);
-    if(empty($input_lastName)){
-        $lastName_err = "Please enter the last name";     
-    } else{
-        $lastName = $input_lastName;
-    }
-    
-    // Validate salary
-    $input_email = trim($_POST["email"]);
-    if(empty($input_email)){
-        $email_err = "Please enter the email address.";     
-    }  else{
-        $email = $input_email;
-    }
-    $input_jobTitle = trim($_POST["jobTitle"]);
-    if(empty($input_jobTitle)){
-        $jobTitle_err = "Please enter the email address.";     
-    }  else{
-        $jobTitle = $input_jobTitle;
-    }
-    $input_Department = $_REQUEST['department'];
-    $department =  $input_Department;
+    $input_newLocation = $_REQUEST['newLocation'];
+    $newLocation =  $input_newLocation;
     
     // Check input errors before inserting in database
-    if(empty($firstName_err) && empty($lastName_err) && empty($email_err)){
+   {
         // Prepare an update statement
-        $sql = "UPDATE personnel SET firstName=?, lastName=?, email=?, jobTitle=?, departmentID=? WHERE id=?";
+        $sql = "UPDATE location SET name=? WHERE id=?";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssssi", $param_firstName, $param_lastName, $param_email, $param_jobTitle, $param_department, $param_id);
+            mysqli_stmt_bind_param($stmt, "si", $param_newLocation, $param_id);
             
             // Set parameters
-            $param_firstName = $firstName;
-            $param_lastName = $lastName;
-            $param_email = $email;
+            $param_newLocation = $newLocation;
+            
             $param_id = $id;
-            $param_jobTitle = $jobTitle;
-            $param_department = $department;
+           
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -79,14 +46,14 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     
     // Close connection
     mysqli_close($link);
-} else{
+} /* else{
     // Check existence of id parameter before processing further
     if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         // Get URL parameter
         $id =  trim($_GET["id"]);
         
         // Prepare a select statement
-        $sql = "SELECT * FROM personnel WHERE id = ?";
+        $sql = "SELECT * FROM location WHERE id = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -100,7 +67,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     
                 if(mysqli_num_rows($result) == 1){
                     /* Fetch result row as an associative array. Since the result set
-                    contains only one row, we don't need to use while loop */
+                    contains only one row, we don't need to use while loop 
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     
                     // Retrieve individual field value
@@ -108,19 +75,20 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     $lastName = $row["lastName"];
                     $email = $row["email"];
                     $jobTitle = $row["jobTitle"];
+                    
                 } else{
                     // URL doesn't contain valid id. Redirect to error page
-                    header("location: ../../index.html");
-                    exit();
-                }
+            //        header("location: ../../index.html");
+            //        exit();
+           //     }
                 
-            } else{
+            } {
                 echo "Oops! Something went wrong. Please try again later.";
             }
-        }
+        //}
         
         // Close statement
-        mysqli_stmt_close($stmt);
+ /*       mysqli_stmt_close($stmt);
         
         // Close connection
         mysqli_close($link);
@@ -129,7 +97,6 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         header("location: ../../index.html");
         exit();
     }
-}
+} */
 
 ?>
- 

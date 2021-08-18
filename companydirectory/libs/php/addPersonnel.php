@@ -44,11 +44,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
         $email = $input_email;
     }
-    $input_Department = $_REQUEST['department'];
-    $department =  $input_Department;
+    $input_department = $_REQUEST['department'];
+    $department =  $input_department;
  
     // Check input errors before inserting in database
-    if(empty($firstName_err) && empty($lastName_err) && empty($email_err) && empty($jobTitle_err)){
+    if(empty($firstName_err) && empty($lastName_err) && empty($email_err)){
         // Prepare an insert statement
         $sql = "INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES (?, ?, ?, ?, ?)";
          
@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: ../../index.html");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -81,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
- 
+ <!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,4 +148,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     
 </body>
-</html>
+</html>  -->

@@ -38,9 +38,13 @@
 
 	$query = $conn->prepare('DELETE FROM department WHERE id = ?');
 	
-	$query->bind_param("i", $_REQUEST['departmentID']);
+	$query->bind_param("i", $_REQUEST['id']);
 
-	$query->execute();
+	if($query->execute());{
+	header("location: ../../index.html");
+	exit();
+} 
+
 	
 	if (false === $query) {
 
