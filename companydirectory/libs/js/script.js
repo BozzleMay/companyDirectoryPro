@@ -182,7 +182,7 @@
 */var table = $('#myTable').DataTable({
   
 ajax: {
-  url:  "http://localhost/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getall.php",
+  url:  "https://companypro.herokuapp.com/companydirectory/libs/php/getall.php",
   dataSrc: 'data',
   cache: true,
   responsive: true,
@@ -214,7 +214,7 @@ columns: [{data: 'firstName'},
       })
 var departmentTable = $('#departmentTable').DataTable({
 ajax: {
-  url:  "http://localhost/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getallDepartments.php",
+  url:  "https://companypro.herokuapp.com/companydirectory/libs/php/getallDepartments.php",
   dataSrc: 'data',
   cache: true,
   responsive: true,
@@ -253,7 +253,7 @@ columns: [{data: 'name'},
       var locationTableS = $('#locationTable').DataTable({
   
         ajax: {
-          url:  "http://localhost/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getLocation.php",
+          url:  "https://companypro.herokuapp.com/companydirectory/libs/php/getLocation.php",
           dataSrc: 'data',
           cache: true,
           responsive: true,
