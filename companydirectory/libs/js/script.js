@@ -23,7 +23,7 @@
 
 
         $.ajax({
-          url:  "companydirectory/libs/php/getallDepartments.php",
+          url:  "companydirectory/libs/php/getAllDepartments.php",
           type: 'POST',
           dataType: 'json',
       
@@ -182,7 +182,7 @@
 */var table = $('#myTable').DataTable({
   
 ajax: {
-  url:  "http://localhost/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getall.php",
+  url:  "/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getall.php",
   dataSrc: 'data',
   cache: true,
   responsive: true,
@@ -214,7 +214,7 @@ columns: [{data: 'firstName'},
       })
 var departmentTable = $('#departmentTable').DataTable({
 ajax: {
-  url:  "http://localhost/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getallDepartments.php",
+  url:  "CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getAllDepartments.php",
   dataSrc: 'data',
   cache: true,
   responsive: true,
@@ -253,7 +253,7 @@ columns: [{data: 'name'},
       var locationTableS = $('#locationTable').DataTable({
   
         ajax: {
-          url:  "http://localhost/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getLocation.php",
+          url:  "/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getLocation.php",
           dataSrc: 'data',
           cache: true,
           responsive: true,
@@ -471,7 +471,7 @@ $('#locationTable tbody').on( 'click', '#viewLocationButton', function () {
 //} );
 
 $.ajax({
-  url:  "companydirectory/libs/php/getallDepartments.php",
+  url:  "companydirectory/libs/php/getAllDepartments.php",
   type: 'POST',
   dataType: 'json',
 
@@ -509,7 +509,7 @@ console.log('wprking')
 $('#locationTable tbody').on( 'click', '#deleteLocationButton', function () {
   var data = locationTableS.row( $(this).parents('tr') ).data();
   $.ajax({
-    url:  "companydirectory/libs/php/getallDepartments.php",
+    url:  "companydirectory/libs/php/getAllDepartments.php",
     type: 'POST',
     dataType: 'json',
   
