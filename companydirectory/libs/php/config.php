@@ -38,7 +38,7 @@ $query_builder = TRUE;
 
 
 
-$link = mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+$link = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 ?>
 
 
