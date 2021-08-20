@@ -66,7 +66,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records updated successfully. Redirect to landing page
-                header("location: ../../index.html");
+                header("location: ../../index.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -110,7 +110,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     $jobTitle = $row["jobTitle"];
                 } else{
                     // URL doesn't contain valid id. Redirect to error page
-                    header("location: ../../index.html");
+                    header("location: ../../index.php");
                     exit();
                 }
                 
@@ -126,7 +126,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         mysqli_close($link);
     }  else{
         // URL doesn't contain id parameter. Redirect to error page
-        header("location: ../../../index.html");
+        header("location: ../../../index.php");
         exit();
     }
 }
