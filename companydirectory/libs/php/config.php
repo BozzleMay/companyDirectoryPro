@@ -36,6 +36,13 @@ $active_group = 'default';
 $query_builder = TRUE;
 // Connect to DB
 
+$cd_host = $cleardb_server;
+$cd_port = 3306;
+$cd_socket = "";
+$cd_user = $cleardb_username; // user name
+$cd_password = $cleardb_password;	// "sElling@348"; // password
+$cd_dbname = $cleardb_db; // database name
+
 
 
 $link = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
