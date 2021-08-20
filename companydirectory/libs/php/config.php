@@ -38,7 +38,7 @@ $query_builder = TRUE;
 
 
 
-$link = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+$link = mysqli_connect("eu-cdbr-west-01.cleardb.com", "b6cf19761717ad", "234da1df", "heroku_a4889bd5998bc11");
 ?>
 
 
