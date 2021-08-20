@@ -182,7 +182,7 @@
 */var table = $('#myTable').DataTable({
   
 ajax: {
-  url:  "/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getall.php",
+  url:  "companydirectory/libs/php/getAll.php",
   dataSrc: 'data',
   cache: true,
   responsive: true,
@@ -214,7 +214,7 @@ columns: [{data: 'firstName'},
       })
 var departmentTable = $('#departmentTable').DataTable({
 ajax: {
-  url:  "CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getAllDepartments.php",
+  url:  "companydirectory/libs/php/getAllDepartments.php",
   dataSrc: 'data',
   cache: true,
   responsive: true,
@@ -253,7 +253,7 @@ columns: [{data: 'name'},
       var locationTableS = $('#locationTable').DataTable({
   
         ajax: {
-          url:  "/CompanyDirectory/companyDirectoryPro/companydirectory/libs/php/getLocation.php",
+          url:  "companydirectory/libs/php/getLocation.php",
           dataSrc: 'data',
           cache: true,
           responsive: true,
@@ -349,7 +349,7 @@ $('#departmentTable tbody').on( 'click', '#deleteDepartmentButton', function () 
   $('#deleterDep').prop("value", idToDelDep)
 
   $.ajax({
-    url:  "companydirectory/libs/php/getall.php",
+    url:  "companydirectory/libs/php/getAll.php",
     type: 'POST',
     dataType: 'json',
   
@@ -427,7 +427,7 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function () {
   $('#viewLocsInDepartment').html(data.location)
 
   $.ajax({
-    url:  "companydirectory/libs/php/getall.php",
+    url:  "companydirectory/libs/php/getAll.php",
     type: 'POST',
     dataType: 'json',
   
