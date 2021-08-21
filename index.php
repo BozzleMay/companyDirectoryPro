@@ -178,7 +178,7 @@
                                  
                                                 </div>
                                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                                <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
+                                                <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                                             </form>
                                         </div>
                                     </div>        
@@ -349,7 +349,7 @@
                                                 </div>
                                                 <div class='addFooter'>
                                                 <input type="submit" class="btn btn-primary pull-right" value="Submit">
-                                                <a href="index.html" class="btn btn-secondary ml-2 pull-right">Cancel</a>
+                                                <a href="index.php" class="btn btn-secondary ml-2 pull-right">Cancel</a>
                                                 </div>
                                             </form>
                                         </div>
@@ -624,7 +624,7 @@
                                   </select>
                                 
                             <input type="submit" class="btn btn-primary" value="Submit">
-                                                <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
+                                                <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                         </form>
                     </div>
                    </div>
@@ -654,7 +654,7 @@
                                 </div>
                                 <div class='addFooter'>
                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                                 </div>
                                 </form>
                             </div>
