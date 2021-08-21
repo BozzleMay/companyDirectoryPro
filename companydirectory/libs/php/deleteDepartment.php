@@ -17,7 +17,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             // Records deleted successfully. Redirect to landing page
-            header("location: ../../../index.html");
+            header("location: ../../../index.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
@@ -33,7 +33,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Check existence of id parameter
     if(empty(trim($_GET["id"]))){
         // URL doesn't contain id parameter. Redirect to error page
-        header("location: ../../../index.html");
+        header("location: ../../../index.php");
         exit();
     }
 }
