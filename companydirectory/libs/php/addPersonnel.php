@@ -66,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-                header("location: ../../../index.html");
+                header("location: ../../../index.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -81,71 +81,3 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
- <!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Record</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
-    <style>
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="card bg-info">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                <div class="modal-header">
-                <h2 class="mt-4">Add Employee</h2>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                    <p>Please fill this form and submit to add employee record to the database.</p>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="firstName" class="form-control <?php echo (!empty($firstName_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstName; ?>">
-                            <span class="invalid-feedback"><?php echo $firstName_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <textarea name="lastName" class="form-control <?php echo (!empty($lastName_err)) ? 'is-invalid' : ''; ?>"><?php echo $lastName; ?></textarea>
-                            <span class="invalid-feedback"><?php echo $lastName_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                            <span class="invalid-feedback"><?php echo $email_err;?></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Job Title</label>
-                            <input type="text" name="jobTitle" class="form-control <?php echo (!empty($jobTitle_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $jobTitle; ?>">
-                            <span class="invalid-feedback"><?php echo $jobTitle_err;?></span>
-                        </div>
-                        <div class="form-group">
-                        <label>Department</label>
-                        <select class="custom-select mr-sm-2" id="department" name='department'>
-            <option value="Select a Department">Select A Department</option>
-
-          </select>
-                        </div>
-           
-
-         
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
-                    </form>
-                </div>
-            </div>        
-        </div>
-    </div>
-    
-</body>
-</html>  -->
