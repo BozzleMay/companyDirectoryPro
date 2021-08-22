@@ -580,7 +580,7 @@
                              <div class="row">
                                  <div class="col-md-12">
                                      <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
-                                     <form action="companydirectory/libs/php/deleteDepartmentById.php" method="post">
+                                     <form action="companydirectory/libs/php/deleteDepartmentByID.php" method="post">
                                          <div class="alert alert-danger">
                                              <input type="hidden" name="id" id='deleterDep' value=""/>
                                              <p id='depWarningMessage'>Are you sure you want to delete this Department?</p>
