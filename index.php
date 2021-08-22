@@ -177,8 +177,10 @@
                         
                                  
                                                 </div>
+                                                 <div class='addFooter'>
                                                 <input type="submit" class="btn btn-primary" value="Submit">
                                                 <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>        
