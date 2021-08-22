@@ -410,7 +410,7 @@
                           </select>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                                             <input type='submit' value='Submit' class="btn btn-success">
                                         </form>
                                         </div>
@@ -464,7 +464,7 @@
                               </select>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                                                 <input type='submit' value='Submit' class="btn btn-success">
                                             </form>
                                             </div>
@@ -520,7 +520,7 @@
                                                 </div>
                                                            
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                     <input type='submit' value='Submit' class="btn btn-success">
                 </form>
                 </div>
@@ -624,9 +624,10 @@
                                     <option value="">Select A Location</option>
                         
                                   </select>
-                                
+                                <div class='addFooter'>
                             <input type="submit" class="btn btn-primary" value="Submit">
                                                 <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
+                                </div>
                         </form>
                     </div>
                    </div>
