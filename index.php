@@ -622,9 +622,10 @@
                                     <option value="">Select A Location</option>
                         
                                   </select>
-                                
+                                <div class='addFooter'>
                             <input type="submit" class="btn btn-primary" value="Submit">
                                                 <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                                </div>
                         </form>
                     </div>
                    </div>
