@@ -62,9 +62,9 @@
 
 		 
 		
-//	header("location: ../../../index.php");
+	header("location: ../../../index.php");
 	
-//	exit();
+	exit();
 	} else {
 		
 		$output['status']['code'] = "400";
