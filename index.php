@@ -4,33 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel='stylesheet' href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+  
     <link rel="stylesheet" href="companydirectory/libs/css/styles.css" type='text/css'>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery.fancytable/dist/fancyTable.min.js"></script>
+    
+ 
+    <style>
+      
    
         
-    <style>
+    
         .wrapper{
             width: 600px;
             margin: 0 auto;
         }
-        table tr td:last-child{
-            width: 120px;
-        }
+        
     </style>
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();   
-        });
-    </script>
+ 
 </head>
 <body>
 <nav class="navbar">
@@ -47,14 +43,20 @@
    <div id='emp' class='container'>
        <div class='addDeetsButton'>
     <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Employee </button> 
-       </div>
-                    <table id="myTable" class="table table-bordered table-striped">
+       
+       <form action="#" method="get" onsubmit="return false;">
+        
+            
+        <input type="text" placeholder="Search" aria-hidden="true" size="30" name="q" id="q" value="" onkeyup="doSearch();" />
+        </div>
+        </form>
+                    <table id="myTable" class="table table-bordered table-hover">
                          <thead>
                              <tr>
-                                 
-                                 <th>First Name</th>
+                                <th style="display:none;">id</th>
+                                 <th >First Name</th>
                                  <th>Last Name</th>
-                                 <th class="priority-5">Email</th>
+                                 <th>Email</th>
                                  <th>Department</th>
                                  <th>Interactions</th>
                                 
@@ -62,24 +64,23 @@
                          </thead>
                          <tbody>
                              <tr>
-                                 
-                                 <td></td>
-                                 <td></td>
-                                 <td class='.priority-5'></td>
-                                 <td></td>
-                                 <td></td>
-                                 
-                                 
+
                              </tr>
+                             
                         
-                         </tbody>                            
+                         </tbody>
+                         <p id="noResults" class="searchres">No Results - Please Search Again</p>
                      </table>
+               
                     </div>
                     <div class='container' id="department_wrapper" >
                         <div class='addDeetsButton'>
                         <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#addDepartmentModal"><i class="fa fa-plus"></i> Add New Department </button> 
                         </div>
-                        <table id="departmentTable" class="table table-bordered table-striped">
+                        <form action="#" method="get" onsubmit="return false;">
+                            <input type="text" placeholder="Search" size="30" name="dq" id="dq" value="" onkeyup="departmentSearch();" />
+                            </form>
+                        <table id="departmentTable" class="table table-bordered table-hover">
                              <thead>
                                  <tr>
                                      
@@ -92,21 +93,24 @@
                              <tbody>
                                  <tr>
                                       
-                                     <td id='dep'></td>
-                                   <!--  <td></td> -->
-                                     <td></td> 
-                                     <td></td>
+                                   
                                      
                                  </tr>
+                                 
                             
-                             </tbody>                            
+                             </tbody>   
+                             <p id="noDepartmentResults" class='searchres' >No Results - Please Search Again</p>                         
                          </table>
                         </div>
                         <div class='container' id="location_wrapper">
                         <div class='addDeetsButton'>
                             <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#addLocationModal"><i class="fa fa-plus"></i> Add New Location </button> 
                         </div>
-                            <table id="locationTable" class="table table-bordered table-striped">
+                        <form action="#" method="get" onsubmit="return false;">
+                            
+                            <input type="text" placeholder="Search" size="30" name="eq" id="eq" value="" onkeyup="locationSearch();" />
+                            </form>
+                            <table id="locationTable" class="table table-bordered table-hover">
                                  <thead>
                                      <tr>
                                          
@@ -119,76 +123,16 @@
                                  <tbody>
                                      <tr>
                                           
-                                         <td></td>
-                                       <!--  <td></td> -->
-                                          <td></td>
-                                         <td></td>
+                                         
                                          
                                      </tr>
                                 
-                                 </tbody>                            
+                                 </tbody> 
+                                 <p id="noLocationResults" class='searchres'>No Results - Please Search Again</p>                           
                              </table>
                             </div>
                         
-                        <!--
-                        <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                        <div class="card bg-info">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                    <div class="modal-header">
-                                    <h2 class="mt-4">Add Employee</h2>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                      </button>
-                                    </div>
-                                        <p>Please fill this form and submit to add employee record to the database.</p>
-                                        <form action="libs/php/updatePersonnel.php">
-                                            <div class="form-group">
-                                                <label>Name</label>
-                                                <input type="text" name="firstName" class="form-control">
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <textarea name="lastName" class="form-control"></textarea>
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="text" name="email" class="form-control" value="">
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Job Title</label>
-                                                <input type="text" name="jobTitle" class="form-control " value="">
-                                                <span class="invalid-feedback"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Department</label>
-                                                <select class="custom-select mr-sm-2" id="editdepartment" name='department'>
-                                    <option value="Select a Department">Select A Department</option>
-                        
-                                  </select>
-                                                </div>
-                                   
-                        
-                                 
-                                                </div>
-                                                 <div class='addFooter'>
-                                                <input type="submit" class="btn btn-primary" value="Submit">
-                                                <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>        
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                        </div> -->
+                     
                         <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                               <div class="modal-content viewCard">
@@ -351,7 +295,7 @@
                                                 </div>
                                                 <div class='addFooter'>
                                                 <input type="submit" class="btn btn-primary pull-right" value="Submit">
-                                                <a href="index.html" class="btn btn-secondary ml-2 pull-right">Cancel</a>
+                                                <a href="index.php" class="btn btn-secondary ml-2 pull-right">Cancel</a>
                                                 </div>
                                             </form>
                                         </div>
@@ -410,7 +354,7 @@
                           </select>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                                             <input type='submit' value='Submit' class="btn btn-success">
                                         </form>
                                         </div>
@@ -446,7 +390,7 @@
                                         <form action="companydirectory/libs/php/updateDepartment.php" method="post">
                                             <div class="form-group idman">
                                                 <label>id</label>
-                                                <input type="text" id="editDepartmentId" name="id" class="form-control" >
+                                                <input type="text" id="editDepartmentId" name="id" class="form-control"  >
                                                 <span  class="invalid-feedback"></span>
                                             </div>
                                             <div class="form-group">
@@ -458,13 +402,13 @@
                                            
                                             <div class="form-group">
                                             <label>Location</label>
-                                            <select class="custom-select mr-sm-2 locationSelector" id="editDepartmentLocation" name='locationPicker'>
+                                            <select class="custom-select mr-sm-2 locationSelector" id="editDepartmentLocation" name='locationPicker' value=''>
                                 
                     
                               </select>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                                                 <input type='submit' value='Submit' class="btn btn-success">
                                             </form>
                                             </div>
@@ -520,7 +464,7 @@
                                                 </div>
                                                            
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
                     <input type='submit' value='Submit' class="btn btn-success">
                 </form>
                 </div>
@@ -535,7 +479,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mt-5 mb-3">Delete Record</h2>
-                    <form action="companydirectory/libs/php/deletePersonnel.php" method="post">
+                    <form action="companydirectory/libs/php/deletePersonnelByID.php" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="id" id="deleter" value=""/>
                             <p>Are you sure you want to delete this employee record?</p>
@@ -624,10 +568,9 @@
                                     <option value="">Select A Location</option>
                         
                                   </select>
-                                <div class='addFooter'>
+                                
                             <input type="submit" class="btn btn-primary" value="Submit">
-                                                <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
-                                </div>
+                                                <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                         </form>
                     </div>
                    </div>
@@ -657,7 +600,7 @@
                                 </div>
                                 <div class='addFooter'>
                                 <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="index.html" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                                 </div>
                                 </form>
                             </div>
@@ -666,12 +609,133 @@
                 </div>
                 
                 </div>
-            </div>     
+            </div>    
+            <script>
+            $("#noResults").hide();
+            function doSearch() {
+                var q = document.getElementById("q");
+                var v = q.value.toLowerCase();
+                var rows = document.getElementsByTagName("tr");
+                console.log(rows)
+                var on = 0;
+                for ( var i = 2; i < rows.length; i++ ) {
+                  var fullname = rows[i].getElementsByTagName("td");
+                  console.log(rows.length)
+                  let firstName = fullname[1].innerHTML.toLowerCase();
+                  let surName = fullname[2].innerHTML.toLowerCase();
+                  let searchEmail = fullname[3].innerHTML.toLowerCase();
+                  let searchDepar = fullname[4].innerHTML.toLowerCase();
+                  
+          
+
+                  if ( firstName ) {
+                      if ( v.length == 0 || (v.length < 3 && firstName.indexOf(v) == 0) || (v.length >= 3 && firstName.indexOf(v) > -1 ) || (v.length < 3 && surName.indexOf(v) == 0) || (v.length >= 3 && surName.indexOf(v) > -1 ) || (v.length < 3 && searchEmail.indexOf(v) == 0) || (v.length >= 3 && searchEmail.indexOf(v) > -1 ) || (v.length < 3 && searchDepar.indexOf(v) == 0) || (v.length >= 3 && searchDepar.indexOf(v) > -1 ) ) {
+                      rows[i].style.display = "";
+                      on++;
+                      console.log(on)
+                      
+                    } else {
+                      rows[i].style.display = "none";
+                      
+                      
+                     
+
+                     
+                    }
+                  } 
+                  let a = document.querySelectorAll('td')
+                if (a && on > 0){
+                    $("#noResults").hide()}
+                else{
+                    $("#noResults").show()
+                   
+                    
+                }
+                 
+                }
+              
             
-                <script>
+              } 
+              $("#noDepartmentResults").hide();
+              function departmentSearch() {
+                var s = document.getElementById("dq");
+                var t = s.value.toLowerCase();
+                var rows = departmentTable.getElementsByTagName("tr");
+                console.log(rows)
+                var on = 0;
+                for ( var i = 2; i < rows.length; i++ ) {
+                  var departmentName = rows[i].getElementsByTagName("td");
+                 
+                  let department = departmentName[1].innerHTML.toLowerCase()
+                  let location = departmentName[2].innerHTML.toLowerCase()
+                    
+
+                  if ( departmentName ) {
+                      if ( t.length == 0 || (t.length < 3 && department.indexOf(t) == 0) || (t.length >= 3 && department.indexOf(t) > -1 ) || (t.length < 3 && location.indexOf(t) == 0) || (t.length >= 3 && location.indexOf(t) > -1 ) ) {
+                      rows[i].style.display = "";
+                      on++;
+                    } else {
+                      rows[i].style.display = "none";
+                    }
+                  } 
+                  let b = departmentTable.querySelectorAll('td')
+                if (b && on > 0){
+                    $("#noDepartmentResults").hide()}
+                else{
+                    $("#noDepartmentResults").show()
+                   
+                    
+                }
+                 
+                }
+              } 
+              $("#noLocationResults").hide();
+              function locationSearch() {
+                var s = document.getElementById("eq");
+                var t = s.value.toLowerCase();
+                var rows = locationTable.getElementsByTagName("tr");
+                console.log(rows)
+                var on = 0;
+                for ( var i = 2; i < rows.length; i++ ) {
+                  var locationName = rows[i].getElementsByTagName("td");
+                 
+                  let location = locationName[1].innerHTML.toLowerCase()
+                  
+                  
+                    
+
+                  if ( location ) {
+                      if ( t.length == 0 || (t.length < 3 && location.indexOf(t) == 0) || (t.length >= 3 && location.indexOf(t) > -1 )   ) {
+                      rows[i].style.display = "";
+                      on++;
+                    } else {
+                      rows[i].style.display = "none";
+                    }
+                  } 
+                  let c = locationTable.querySelectorAll('td')
+                if (c && on > 0){
+                    $("#noLocationResults").hide()}
+                else{
+                    $("#noLocationResults").show()
+                   
+                    
+                }
+                
+                 
+                }
+              } 
+             
+          
+             
+        
+     </script>
+     
+            <script src='companydirectory/libs/js/script.js'></script>
+                
       
 
-</script>
-<script src='companydirectory/libs/js/script.js'></script>
+
+
+
 </body>
 </html>
