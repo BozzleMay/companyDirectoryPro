@@ -62,7 +62,7 @@
 
 		 
 		
-//	header("location: ../../../index.html");
+//	header("location: ../../../index.php");
 	
 //	exit();
 	} else {
@@ -78,7 +78,7 @@
 
 		echo json_encode($output); 
 
-	//	 header("location: ../../../index.html");
+	//	 header("location: ../../../index.php");
 	
       // 	exit();
 	}
