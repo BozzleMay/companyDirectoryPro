@@ -77,10 +77,10 @@
 		mysqli_close($conn);
 
 		echo json_encode($output); 
-
-	//	 header("location: ../../../index.php");
 	
-      // 	exit();
+		header("location: ../../../index.php");
+	
+      	exit();
 	}
 
 
