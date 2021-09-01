@@ -68,22 +68,28 @@ table.dataTable tbody tr {
   .priority-5 {
     display: none;
   }
-  #myTable td:nth-child(3) {
+  #myTable td:nth-child(4) {
+    display: none;
+  }
+  #myTable th:nth-child(4) {
     display: none;
   }
 }
-#myTable td:nth-child(5) {
+#myTable td:nth-child(7) {
   width: 15%;
   text-align: center;
+  white-space: nowrap;
 }
 
 #locationTable td:nth-child(3) {
   width: 15%;
   text-align: center;
+  white-space: nowrap;
 }
-#departmentTable td:nth-child(3) {
+#departmentTable td:nth-child(4) {
   width: 15%;
   text-align: center;
+  white-space: nowrap;
 }
 .modal-content {
   padding-bottom: 1rem;
@@ -105,4 +111,24 @@ table.dataTable tbody tr {
 }
 .fa-trash:hover {
   transform: scale(2);
+}
+thead {
+  background-color: lavender;
+}
+tr:hover {
+  background-color: lavender;
+}
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+  background-color: lavender;
+}
+.searchres {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  top: 10rem;
+  width: 100%;
+}
+.btn-success {
+  margin-bottom: 0.8rem;
 }
