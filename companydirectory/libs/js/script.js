@@ -138,26 +138,22 @@
     })
 
     
-    $("#deleteDepartmentModal form").submit((e) => {
-    // e.preventDefault();
-     
-      $.ajax({ url: 'companydirectory/libs/php/deleteDepartmentById.php',
-       type: 'post',
-       id: $("#deleteDep").val(),
-       dataType: "json",
-      success: function(output) {
-        console.log(output)
-        if (output.status.code === '400'){
-          alert("Can't delete")
-         } else {
-        
-         }
-          },
-           error: function (jqXHR, textStatus, errorThrown) {
-          console.log('Did not work')
-                                                     }
-                                          });
-      })
+    
+    $.ajax({ url: 'companydirectory/libs/php/deleteDepartmentById.php',
+    type: 'POST',
+    data: { id:$("#deleterDep").val()},
+    dataType: "json",
+   success: function(output) {
+     console.log(output)
+    
+       },
+        error: function (jqXHR, textStatus, errorThrown) {
+       console.log('Did not work')
+                                                  }
+                                       });
+   
+    
+    
       
    
   
@@ -422,9 +418,35 @@ $('#myTable').on('click','#editButton',function(e){
 })
 $('#departmentTable tbody').on('click', '#deleteDepartmentButton', (e) => {
   let idToDelDep = ($(e.target).parent().parent().parent().siblings()[0].innerHTML)
+  $('#deleterTrial').prop("value", idToDelDep)
+  
+  $.ajax({
+    url:  `companydirectory/libs/php/departmentVerify.php`,
+    type: 'POST',
+    dataType: 'json',
+   data: {val: idToDelDep},
+  
+    success: function (result) {
+  
+        //  if (result.status.name == "ok") {
+       
+          
+          console.log(result)
+          console.log(idToDelDep)
+          
+          
+         
+         
+        // } 
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      alert('This department has employees linked to it. It should not be deleted.')
+      $('#deleteDepartmentModal').modal('hide')
+    }
+  })
  
   $('#deleterDep').prop("value", idToDelDep)
-
+  console.log(e)
 
 })
 $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
@@ -478,10 +500,32 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
   })
   $('#locationTable tbody').on( 'click', '#deleteLocationButton', function (e) {
     let idToDelLo = $(e.target).parent().parent().siblings()[0].innerHTML
+    $('#deleterLoc').prop("value", idToDelLo)
     
-   
+    $.ajax({
+      url:  `companydirectory/libs/php/locationVerify.php`,
+      type: 'POST',
+      dataType: 'json',
+     data: {val: idToDelLo},
+    
+      success: function (result) {
+    
+          //  if (result.status.name == "ok") {
+         
+            
+            console.log(result)
+           
+           
+          // } 
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log('error')
+        alert('This location has departments linked to it. It should not be deleted.')
+        $('#deleteLocationModal').modal('hide')
+      }
+    })
 
-    console.log()
+    
   
   
     $('#deleterLoc').prop("value", idToDelLo)
@@ -547,7 +591,7 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
 
 
 
-
+ 
 
 
 })
