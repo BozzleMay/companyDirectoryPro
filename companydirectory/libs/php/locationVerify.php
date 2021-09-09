@@ -1,41 +1,75 @@
 <?php
-// Include config file
-require_once "config.php";
- 
-// Define variables and initialize with empty values
-$id = "";
 
-    $id = $_REQUEST["val"];
-    
-    
-        $sql = 'SELECT name from location WHERE NOT EXISTS (SELECT * FROM department WHERE department.locationID = location.id) AND id = ?';
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $param_id);
-            
-            // Set parameters
-           $param_id = $id;
-            
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                $result = mysqli_stmt_get_result($stmt);
-                if(mysqli_num_rows($result) != 1){
-                    echo json_encode($param_id); 
-                }
+
+	$executionStartTime = microtime(true);
+
+	include("config.php");
+
+	header('Content-Type: application/json; charset=UTF-8');
+
+    $conn = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
+//	$conn = new mysqli($cd_host, $cd_user, $cd_password, $cd_dbname , $cd_port, $cd_socket);
+
+	if (mysqli_connect_errno()) {
 		
-            }
+		$output['status']['code'] = "300";
+		$output['status']['name'] = "failure";
+		$output['status']['description'] = "database unavailable";
+		$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
+		$output['data'] = [];
+		
+		mysqli_close($conn);
+
+		echo json_encode($output);
+		
+		exit;
+
+	}	
+
+	// SQL statement accepts parameters and so is prepared to avoid SQL injection.
+	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
+
+	$query = $conn->prepare("SELECT count(id) as pc FROM department WHERE locationID = ?");
+
+	$query->bind_param("i", $_REQUEST['val']);
+
+	$query->execute();
 	
-		
-    
-              
-        }
-        
-        // Close statement
-        mysqli_stmt_close($stmt);
-        
-        // Close connection
-        mysqli_close($link);
+	if (false === $query) {
 
-        echo json_encode($result); 
-    
+		$output['status']['code'] = "400";
+		$output['status']['name'] = "executed";
+		$output['status']['description'] = "query failed";	
+		$output['data'] = [];
+
+		echo json_encode($output); 
+	
+		mysqli_close($conn);
+		exit;
+
+	}
+
+	$result = $query->get_result();
+
+   	$data = [];
+
+	while ($row = mysqli_fetch_assoc($result)) {
+
+		array_push($data, $row);
+
+	}
+
+	$output['status']['code'] = "200";
+	$output['status']['name'] = "ok";
+	$output['status']['description'] = "success";
+	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
+	$output['data'] = $data;
+
+	header('Content-Type: application/json; charset=UTF-8');
+	
+	echo json_encode($output); 
+
+	mysqli_close($conn);
+
 ?>
