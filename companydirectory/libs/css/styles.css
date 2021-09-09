@@ -2,6 +2,11 @@
   margin: 0;
 }
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+body {
   background-color: rgb(248, 248, 255);
 }
 #addEmployee {
@@ -20,6 +25,7 @@ h4 {
 .table {
   max-width: 100%;
   margin: auto;
+  margin-top: 1rem;
 }
 .employee-data {
   max-width: 80%;
@@ -27,9 +33,13 @@ h4 {
 }
 h2 {
   color: white;
+  text-shadow: 1px 1px black;
+}
+.tableSel {
+  margin-right: 0.6rem;
 }
 .header__icons {
-  padding: 1.2rem;
+  display: flex;
   color: red !important;
 }
 #location_wrapper {
@@ -64,24 +74,30 @@ table.dataTable tbody tr {
   justify-content: flex-end;
   width: 97%;
 }
-@media screen and (max-width: 1045px) and (min-width: 835px) {
+@media screen and (max-width: 1045px) {
   .priority-5 {
     display: none;
   }
-  #myTable td:nth-child(4) {
-    display: none;
-  }
-  #myTable th:nth-child(4) {
+}
+@media screen and (max-width: 600px) {
+  .priority-4,
+  .priority-1 {
     display: none;
   }
 }
-#myTable td:nth-child(7) {
+@media screen and (min-width: 600px) {
+  .priority-6 {
+    display: none;
+  }
+}
+
+#myTable td:nth-child(8) {
   width: 15%;
   text-align: center;
   white-space: nowrap;
 }
 
-#locationTable td:nth-child(3) {
+#locationTable td:nth-child(2) {
   width: 15%;
   text-align: center;
   white-space: nowrap;
@@ -91,11 +107,10 @@ table.dataTable tbody tr {
   text-align: center;
   white-space: nowrap;
 }
-.modal-content {
-  padding-bottom: 1rem;
-}
+
 .card-header {
   background-color: #e0b0ff;
+  padding: 2rem !important;
 }
 .viewCard {
   background-color: transparent;
@@ -131,4 +146,29 @@ tr:hover {
 }
 .btn-success {
   margin-bottom: 0.8rem;
+}
+.se-pre-con {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url("../assets/Preloader_11.gif") center no-repeat #fff;
+}
+#departmentSearchButton,
+#locationSearchButton,
+#employeeSearchButton {
+  margin-right: 0.4em;
+}
+.modal-footer {
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+}
+.card {
+  flex-direction: row;
+}
+#viewDepsInLocation {
+  margin-bottom: 0 !important;
 }
