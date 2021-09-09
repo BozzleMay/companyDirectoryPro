@@ -119,7 +119,7 @@
                                          
                                       <!--   <th>Interactions</th> -->
                                          <th>Location</th>
-                                         <th style="display: none;">Location ID</th>
+                                         
                                          <th></th> 
                                      </tr>
                                  </thead>
@@ -546,6 +546,53 @@
                          </div>
                      </div>
                                 </div>
+                                <div class="modal" id="deleteDepartmentNoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        
+                                    <div class="deleteWrapper" >
+                                     <div class="container-fluid">
+                                         <div class="row">
+                                             <div class="col-md-12">
+                                                 <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                                                 
+                                                     <div class="alert alert-danger">
+                                                         
+                                                         <p id='depWarningMessage'>This department has employees linked to it. Please remove any linked employees before you attempt to delete.</p>
+                                                         <p>
+                                                             
+                                                             <button type='button' id='closeDepDeleteModal' data-dismiss="modal"  value='No' class="btn btn-secondary">Close</button>
+                                                         </p>
+                                                     </div>
+                                                 
+                                             
+                                             </div>
+                                         </div>        
+                                     </div>
+                                 </div>
+                                            </div>
+                                            <div class="modal" id="deleteLocationNoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        
+                                                <div class="deleteWrapper" >
+                                                 <div class="container-fluid">
+                                                     <div class="row">
+                                                         <div class="col-md-12">
+                                                             <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                                                             
+                                                                 <div class="alert alert-danger">
+                                                                     
+                                                                     <p id='depWarningMessage'>This location has departments linked to it. Please remove any linked departments before you attempt to delete.</p>
+                                                                     <p>
+                                                                         
+                                                                         <button type='button' id='closeDepDeleteModal' data-dismiss="modal"  value='No' class="btn btn-secondary">Close</button>
+                                                                     </p>
+                                                                 </div>
+                                                             
+                                                         
+                                                         </div>
+                                                     </div>        
+                                                 </div>
+                                             </div>
+                                                        </div>
+                           
                
               
               <!-- Modal -->
