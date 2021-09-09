@@ -100,7 +100,7 @@ table.dataTable tbody tr {
   white-space: nowrap;
 }
 
-#locationTable td:nth-child(2) {
+#locationTable td:nth-child(3) {
   width: 15%;
   text-align: center;
   white-space: nowrap;
@@ -182,5 +182,13 @@ tr:hover {
 @media screen and (max-width: 600px) {
   .deleteWrapper {
     width: 80vw;
+  }
+}
+#viewEmail {
+  word-wrap: break-word;
+}
+@media screen and (max-width: 500px) {
+  .card {
+    flex-direction: column;
   }
 }
