@@ -9,7 +9,7 @@
 
 	 
 
-	$conn = new mysqli($cd_host, $cd_user, $cd_password, $cd_dbname , $cd_port, $cd_socket);
+	$conn = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
 	if (mysqli_connect_errno()) {
 		
