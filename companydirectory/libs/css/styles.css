@@ -84,6 +84,9 @@ table.dataTable tbody tr {
   .priority-1 {
     display: none;
   }
+  .deleteWrapper {
+    width: 20px;
+  }
 }
 @media screen and (min-width: 600px) {
   .priority-6 {
@@ -171,4 +174,13 @@ tr:hover {
 }
 #viewDepsInLocation {
   margin-bottom: 0 !important;
+}
+.deleteWrapper {
+  width: 600px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 600px) {
+  .deleteWrapper {
+    width: 80vw;
+  }
 }
