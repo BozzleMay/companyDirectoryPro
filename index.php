@@ -59,7 +59,7 @@
                                  <th class='priority-6'>Name</th>
                                  <th class='priority-5'>Email</th>
                                  <th class='priority-4'>Department</th>
-                                 <th>Interactions</th>
+                                 <th></th>
                                 
                              </tr>
                          </thead>
@@ -88,7 +88,7 @@
                                      
                                      <th>Department</th>
                                      <th>Location</th>
-                                     <th>Interactions</th> 
+                                     <th></th> 
                                  </tr>
                              </thead>
                              <tbody>
@@ -120,7 +120,7 @@
                                       <!--   <th>Interactions</th> -->
                                          <th>Location</th>
                                          <th style="display: none;">Location ID</th>
-                                         <th>Interactions</th> 
+                                         <th></th> 
                                      </tr>
                                  </thead>
                                  <tbody>
@@ -478,7 +478,7 @@
     </div>
     <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         
-    <div class="wrapper" >
+    <div class="deleteWrapper" >
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -502,7 +502,7 @@
                </div>
                <div class="modal" id="deleteLocationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 
-               <div class="wrapper" >
+               <div class="deleteWrapper" >
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
@@ -525,7 +525,7 @@
                        </div>
                        <div class="modal" id="deleteDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         
-                        <div class="wrapper" >
+                        <div class="deleteWrapper" >
                          <div class="container-fluid">
                              <div class="row">
                                  <div class="col-md-12">
