@@ -474,9 +474,12 @@ $('#myTable').on('click','#editButton',function(e){
   console.log(row[0].innerHTML)
 })
 $('#departmentTable tbody').on('click', '#deleteDepartmentButton', (e) => {
-  let idToDelDep = ($(e.target).parent().parent().parent().siblings()[2].innerHTML)
-  $('#deleterTrial').prop("value", idToDelDep)
+  var currentRow=$(e.target).closest("tr");
+  let idToDelDep = currentRow.find("td:eq(2)").text();
   console.log(idToDelDep)
+ // let idToDelDep = ($(e.target).parent().parent().parent().siblings()[2].innerHTML)
+  $('#deleterTrial').prop("value", idToDelDep)
+  // console.log(idToDelDep)
   
   $.ajax({
     url:  `companydirectory/libs/php/verifyDepartment.php`,
@@ -599,9 +602,12 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
 
   })
   $('#locationTable tbody').on( 'click', '#deleteLocationButton', function (e) {
-    let idToDelLo = $(e.target).parent().parent().siblings()[1].innerHTML
+  //  let idToDelLo = $(e.target).parent().parent().siblings()[1].innerHTML
+   
+    var currentRow=$(e.target).closest("tr");
+    let idToDelLo = currentRow.find("td:eq(1)").text();
+    console.log(idToDelLo)
     $('#deleterLoc').prop("value", idToDelLo)
-    
     
     $.ajax({
       url:  `companydirectory/libs/php/locationVerify.php`,
@@ -628,9 +634,7 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
           // } 
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.log('error')
-        alert('This location has departments linked to it. It should not be deleted.')
-        $('#deleteLocationModal').modal('hide')
+     
       }
     })
 
