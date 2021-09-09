@@ -164,7 +164,7 @@ $(window).on('load', function () {
 
     
     
-    $.ajax({ url: 'companydirectory/libs/php/deleteDepartmentById.php',
+    $.ajax({ url: 'companydirectory/libs/php/deleteDepartmentByID.php',
     type: 'POST',
     data: { id:$("#deleterDep").val()},
     dataType: "json",
