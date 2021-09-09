@@ -46,7 +46,7 @@
 
 	if($query->execute()){
         // Records deleted successfully. Redirect to landing page
-        header("location: ../../../index.html");
+        header("location: ../../../index.php");
         exit();
     } 
 	
