@@ -1,6 +1,23 @@
-        $(document).ready(function (){
-          var selected = [];
-          
+$(window).on('load', function () {
+  // Animate loader off screen
+  $(".se-pre-con").fadeOut("slow");;
+});
+       
+       $(document).ready(function (){
+       
+        
+              
+         
+        $("#locationSearchButton").click(function(){
+          $("#locationSearchForm").toggle()
+        })
+        $("#departmentSearchButton").click(function(){
+          $("#departmentSearchForm").toggle()
+        })
+        $("#employeeSearchButton").click(function(){
+          $("#employeeSearchForm").toggle()
+        })
+        
           
         
           $("#employees__show").click(function(){
@@ -23,7 +40,7 @@
 
 
         $.ajax({
-          url:  "companydirectory/libs/php/getallDepartments.php",
+          url:  "companydirectory/libs/php/getAllDepartments.php",
           type: 'POST',
           dataType: 'json',
       
@@ -111,14 +128,20 @@
             //  if (result.status.name == "ok") {
            
             console.log(result)
-          
+           
+              let sortedArray = []
               for (let i = 0; i < result.data.length; i++) {
-                                
+                  
+                        
+                               
                 var row = $('<tr class="odd">');
-                row.append("<td style='display: none;'>" + result.data[i].id + '</td>');
-                row.append('<td class="sorting_1" >' + result.data[i].name + '</td>');
+               
+                
+                row.append('<td class="sorting_1">' + result.data[i].name + '</td>');
                 row.append('<td class="sorting_1">' + result.data[i].location + '</td>');
+                row.append("<td style='display:none;'>" + result.data[i].id + '</td>');
                 row.append("<td><div style='display:inline-block;'> <button class='btn' id='viewDepartmentButton' data-toggle='modal' data-target='#viewDepartmentModal'><i class='fa fa-eye text-warning'></i></button><button class='btn' id='editDepartmentButton' data-toggle='modal' data-target='#editDepartmentModal'><i class='fa fa-pencil text-primary'></i></button><button class='btn' id='deleteDepartmentButton' data-toggle='modal' data-target='#deleteDepartmentModal'><i class='fa fa-trash text-danger'></i></button></div></td>")
+                
 
                 $('#departmentTable').append(row)
 
@@ -136,6 +159,8 @@
     
         }
     })
+   
+    
 
     
     
@@ -173,11 +198,12 @@
           for (let i = 0; i < result.data.length; i++) {
 
             var row = $('<tr class="odd">');
-            row.append("<td style='display: none;' data-target='#viewModal'>" + result.data[i].id + '</td>');
-            row.append('<td class="sorting_1">' + result.data[i].firstName + '</td>');
-            row.append('<td class="sorting_1">' + result.data[i].lastName + '</td>');
-            row.append('<td class="sorting_1">' + result.data[i].email + '</td>');
-            row.append('<td class="sorting_1">' + result.data[i].department + '</td>');
+            row.append("<td style='display: none;'>" + result.data[i].id + '</td>');
+            row.append('<td class="sorting_1 priority-1">' + result.data[i].firstName + '</td>');
+            row.append('<td class="sorting_1 priority-1">' + result.data[i].lastName + '</td>');
+            row.append('<td class="sorting_1 priority-6">' + result.data[i].lastName + ', ' + result.data[i].firstName + '</td>');
+            row.append('<td class="sorting_1 priority-5">' + result.data[i].email + '</td>');
+            row.append('<td class="sorting_1 priority-4">' + result.data[i].department + '</td>');
             row.append('<td style="display: none;" class="sorting_1">' + result.data[i].jobTitle + '</td>');
             row.append("<td class='sorting_1'><button class='btn' id='viewButton' data-toggle='modal' data-target='#viewModal'><i class='fa fa-eye text-warning'></i></button><button class='btn' id='editButton' data-toggle='modal' data-target='#edit'><i class='fa fa-pencil text-primary'></i></button><button class='btn' id='deleteButton' data-toggle='modal' data-target='#deleteModal'><i class='fa fa-trash text-danger'></i></button></td>")
             
@@ -224,8 +250,9 @@ $.ajax({
         for (let i = 0; i < result.data.length; i++) {
                           
           var row = $('<tr class="odd">');
-          row.append("<td>" + result.data[i].id + '</td>');
+          
           row.append('<td class="sorting_1">' + result.data[i].name + '</td>');
+          row.append("<td style='display:none;>" + result.data[i].id + '</td>');
           row.append("<td><button class='btn' id='viewLocationButton' data-toggle='modal' data-target='#viewLocationModal'><i class='fa fa-eye text-warning'></i></button><button class='btn' id='editLocationButton' data-toggle='modal' data-target='#editLocation'><i class='fa fa-pencil text-primary'></i></button><button class='btn' id='deleteLocationButton' data-toggle='modal' data-target='#deleteLocationModal'><i class='fa fa-trash text-danger'></i></button></td>")
           $('#locationTable').append(row)
         
@@ -387,10 +414,10 @@ $('#myTable tbody').on( 'click', '#viewButton', function (e) {
   let rowInfo = $(this).parent().parent().children()
   $('#viewFirstName').html(rowInfo[1].innerHTML)
   $('#viewLastName').html(rowInfo[2].innerHTML)
-  $('#viewEmail').html(rowInfo[3].innerHTML)
-  $('#viewDepartment').html(rowInfo[4].innerHTML)
-  if (rowInfo[5].innerHTML){
-  $('#viewJob').html(rowInfo[5].innerHTML)
+  $('#viewEmail').html(rowInfo[4].innerHTML)
+  $('#viewDepartment').html(rowInfo[5].innerHTML)
+  if (rowInfo[6].innerHTML){
+  $('#viewJob').html(rowInfo[6].innerHTML)
   }
   else{
     $('#viewJob').html('N/A')
@@ -402,14 +429,44 @@ $('#myTable tbody').on( 'click', '#viewButton', function (e) {
 } );
 $('#myTable tbody').on( 'click', '#editButton', function (e) {
   let rowInfo = $(this).parent().parent().children()
-  console.log(rowInfo)
-  $('#editId').val(rowInfo[0].innerHTML)
-  $('#editFirstName').val(rowInfo[1].innerHTML)
-  $('#editLastName').val(rowInfo[2].innerHTML)
-  $('#editEmail').val(rowInfo[3].innerHTML)
-  $('#editDepartment  option:selected').text(rowInfo[4].innerHTML)
- // $('#editDepartment  option:selected').val(rowInfo[0].innerHTML)
- // $('#editJob').val(rowInfo[4].innerHTML)
+ 
+ $.ajax({
+  url:  "companydirectory/libs/php/getAll.php",
+  type: 'POST',
+  dataType: 'json',
+
+
+  success: function (result) {
+
+      //  if (result.status.name == "ok") {
+  
+        console.log(result.data[3].id)
+        for (let i=0; result.data.length; i++){
+          if (result.data[i].id === rowInfo[0].innerHTML){
+            console.log(result.data[i].email)
+            $('#editId').val(result.data[i].id)
+            $('#editFirstName').val(result.data[i].firstName)
+            $('#editLastName').val(result.data[i].lastName)
+            $('#editEmail').val(result.data[i].email)
+            $('#editDepartment  option:selected').text(result.data[i].department)
+          }
+        }
+        
+ 
+
+        
+        
+        
+        
+        
+       
+       
+      // } 
+  },
+  error: function (jqXHR, textStatus, errorThrown) {
+    console.log('err0r')
+  }
+})
  
 } );
 $('#myTable').on('click','#editButton',function(e){
@@ -417,8 +474,9 @@ $('#myTable').on('click','#editButton',function(e){
   console.log(row[0].innerHTML)
 })
 $('#departmentTable tbody').on('click', '#deleteDepartmentButton', (e) => {
-  let idToDelDep = ($(e.target).parent().parent().parent().siblings()[0].innerHTML)
+  let idToDelDep = ($(e.target).parent().parent().parent().siblings()[2].innerHTML)
   $('#deleterTrial').prop("value", idToDelDep)
+  console.log(idToDelDep)
   
   $.ajax({
     url:  `companydirectory/libs/php/departmentVerify.php`,
@@ -440,8 +498,7 @@ $('#departmentTable tbody').on('click', '#deleteDepartmentButton', (e) => {
         // } 
     },
     error: function (jqXHR, textStatus, errorThrown) {
-      alert('This department has employees linked to it. It should not be deleted.')
-      $('#deleteDepartmentModal').modal('hide')
+     console.log('nope')
     }
   })
  
@@ -452,11 +509,11 @@ $('#departmentTable tbody').on('click', '#deleteDepartmentButton', (e) => {
 $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
   let rowInfo = $(this).parent().parent().parent().children()
   console.log(rowInfo[1].innerHTML)
- $('#viewDepartmentList').html(rowInfo[1].innerHTML)
-  $('#viewLocsInDepartment').html(rowInfo[2].innerHTML)
+ $('#viewDepartmentList').html(rowInfo[0].innerHTML)
+  $('#viewLocsInDepartment').html(rowInfo[1].innerHTML)
 
   $.ajax({
-    url:  "companydirectory/libs/php/getall.php",
+    url:  "companydirectory/libs/php/getAll.php",
     type: 'POST',
     dataType: 'json',
   
@@ -469,7 +526,7 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
           console.log(result)
           
           for (let m = 0; m < result.data.length; m++) {
-          if (result.data[m].department === rowInfo[1].innerHTML){
+          if (result.data[m].department === rowInfo[0].innerHTML){
           departmentArray.push(result.data[m].department)
           counter +=1
   
@@ -490,12 +547,50 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
   })
   $('#departmentTable tbody').on( 'click', '#editDepartmentButton', function () {
     let rowInfo = $(this).parent().parent().parent().children()
-    $('#editDepartmentId').val(rowInfo[0].innerHTML)
-   $('#editDepartmentName').val(rowInfo[1].innerHTML)
-   $('#editDepartmentLocation  option:selected').text(rowInfo[2].innerHTML)
-   $('#editDepartmentLocation option:selected').value(rowInfo[0].innerHTML)
+    console.log(rowInfo)
+   // $('#editDepartmentId').val(rowInfo[0].innerHTML)
+   // $('#editDepartmentName').val(rowInfo[1].innerHTML)
+   //$('#editDepartmentLocation  option:selected').text(rowInfo[2].innerHTML)
+   //$('#editDepartmentLocation option:selected').value(rowInfo[0].innerHTML)
+   $.ajax({
+    url:  "companydirectory/libs/php/getAllDepartments.php",
+    type: 'POST',
+    dataType: 'json',
   
-  console.log(rowInfo[1].innerHTML)
+  
+    success: function (result) {
+  
+        //  if (result.status.name == "ok") {
+    
+          console.log(result)
+          for (let j=0; result.data.length; j++){
+            if (result.data[j].id === rowInfo[2].innerHTML){
+              console.log(result.data[j])
+              $('#editDepartmentId').val(result.data[j].id)
+              $('#editDepartmentName').val(result.data[j].name)
+              $('#editDepartmentLocation  option:selected').text(result.data[j].location)
+            
+            }
+          }
+          
+   
+  
+          
+          
+          
+          
+          
+         
+         
+        // } 
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.log('err0r')
+    }
+  })
+   
+  
+  
 
   })
   $('#locationTable tbody').on( 'click', '#deleteLocationButton', function (e) {
@@ -538,14 +633,14 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
   $('#locationTable tbody').on( 'click', '#viewLocationButton', function () {
     let rowInfo = $(this).parent().parent().children()
     console.log(rowInfo)
-   $('#viewLocationList').html(rowInfo[1].innerHTML)
+   $('#viewLocationList').html(rowInfo[0].innerHTML)
    $(".box").empty()
    
   
   //} );
   
   $.ajax({
-    url:  "companydirectory/libs/php/getallDepartments.php",
+    url:  "companydirectory/libs/php/getAllDepartments.php",
     type: 'POST',
     dataType: 'json',
   
@@ -555,17 +650,22 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
         //  if (result.status.name == "ok") {
           let trialsArray = []
           for (let j = 0; j < result.data.length; j++) {
-          if (result.data[j].location === rowInfo[1].innerHTML){
+          if (result.data[j].location === rowInfo[0].innerHTML){
           trialsArray.push(result.data[j].name)
   
           }
           
           }
           console.log(trialsArray)
+          if(trialsArray.length > 0) {
           for (let i = 0; i < trialsArray.length; i++) {
-          console.log(trialsArray[i])
+          console.log(trialsArray.length)
           
           $(".box").append("<li><b>" + trialsArray[i] + "</b></li>")
+          }
+         
+        } else {
+          $(".box").append("<li><b>No departments linked to this location</b></li>")
         }
         
         // } 
@@ -582,9 +682,43 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
   console.log('wprking')
   $('#locationTable tbody').on( 'click', '#editLocationButton', function () {
     let rowInfo = $(this).parent().parent().children()
-    $('#editLocationId').val(rowInfo[0].innerHTML)
-   $('#editPlaceName').val(rowInfo[1].innerHTML)
-    console.log(data)
+    console.log(rowInfo)
+  //  $('#editLocationId').val(rowInfo[1].innerHTML)
+   // $('#editPlaceName').val(rowInfo[0].innerHTML)
+    
+    $.ajax({
+      url:  "companydirectory/libs/php/getLocation.php",
+      type: 'POST',
+      dataType: 'json',
+    
+    
+      success: function (result) {
+    
+          //  if (result.status.name == "ok") {
+      
+            console.log(result.data.length)
+            for (let k=0; result.data.length; k++){
+              if (result.data[k].name === rowInfo[0].innerHTML){
+                console.log(result.data[k])
+                $('#editPlaceName').val(result.data[k].name )
+                $('#editLocationId').val(result.data[k].id)
+                
+                
+                
+              
+              }
+            }
+            
+     
+    
+           
+           
+          // } 
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log('err0r')
+      }
+    })
   })
   
  
