@@ -15,6 +15,8 @@
 
 	header('Content-Type: application/json; charset=UTF-8');
 
+//	$conn = new mysqli($cd_host, $cd_user, $cd_password, $cd_dbname, $cd_port, $cd_socket);
+
 	$conn = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
 	if (mysqli_connect_errno()) {
@@ -40,7 +42,13 @@
 	
 	$query->bind_param("i", $_REQUEST['id']);
 
-	$query->execute();
+	//$query->execute();
+
+	if($query->execute()){
+        // Records deleted successfully. Redirect to landing page
+        header("location: ../../../index.html");
+        exit();
+    } 
 	
 	if (false === $query) {
 
