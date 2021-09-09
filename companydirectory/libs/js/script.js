@@ -252,7 +252,7 @@ $.ajax({
           var row = $('<tr class="odd">');
           
           row.append('<td class="sorting_1">' + result.data[i].name + '</td>');
-          row.append("<td style='display:none;>" + result.data[i].id + '</td>');
+          row.append("<td style='display:none;'>" + result.data[i].id + '</td>');
           row.append("<td><button class='btn' id='viewLocationButton' data-toggle='modal' data-target='#viewLocationModal'><i class='fa fa-eye text-warning'></i></button><button class='btn' id='editLocationButton' data-toggle='modal' data-target='#editLocation'><i class='fa fa-pencil text-primary'></i></button><button class='btn' id='deleteLocationButton' data-toggle='modal' data-target='#deleteLocationModal'><i class='fa fa-trash text-danger'></i></button></td>")
           $('#locationTable').append(row)
         
@@ -479,7 +479,7 @@ $('#departmentTable tbody').on('click', '#deleteDepartmentButton', (e) => {
   console.log(idToDelDep)
   
   $.ajax({
-    url:  `companydirectory/libs/php/departmentVerify.php`,
+    url:  `companydirectory/libs/php/verifyDepartment.php`,
     type: 'POST',
     dataType: 'json',
    data: {val: idToDelDep},
@@ -488,8 +488,13 @@ $('#departmentTable tbody').on('click', '#deleteDepartmentButton', (e) => {
   
         //  if (result.status.name == "ok") {
        
-          
-          console.log(result)
+      if (result.data[0].pc > 0){
+      e.preventDefault()
+        $('#deleteDepartmentModal').modal('hide')
+        $('#deleteDepartmentNoModal').modal('show')
+        console.log('add something')
+      }  
+          console.log(result.data[0].pc)
           console.log(idToDelDep)
           
           
@@ -594,8 +599,9 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
 
   })
   $('#locationTable tbody').on( 'click', '#deleteLocationButton', function (e) {
-    let idToDelLo = $(e.target).parent().parent().siblings()[0].innerHTML
+    let idToDelLo = $(e.target).parent().parent().siblings()[1].innerHTML
     $('#deleterLoc').prop("value", idToDelLo)
+    
     
     $.ajax({
       url:  `companydirectory/libs/php/locationVerify.php`,
@@ -607,8 +613,16 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
     
           //  if (result.status.name == "ok") {
          
-            
+            console.log(idToDelLo)
             console.log(result)
+              
+      if (result.data[0].pc > 0){
+        e.preventDefault()
+          $('#deleteLocationModal').modal('hide')
+          $('#deleteLocationNoModal').modal('show')
+          console.log('add something')
+        } 
+            
            
            
           // } 
