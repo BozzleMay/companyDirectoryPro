@@ -46,9 +46,9 @@ $(window).on('load', function () {
       
       
           success: function (result) {
-      
+            result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
               //  if (result.status.name == "ok") {
-      result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
+              console.log(result.data.name)
       
               for (let i = 0; i < result.data.length; i++) {
                   $('.department').append($('<option>', {
@@ -57,6 +57,7 @@ $(window).on('load', function () {
                   }))
                   
                 }
+               
 
                 
                
@@ -80,7 +81,7 @@ $(window).on('load', function () {
         success: function (result) {
     
             //  if (result.status.name == "ok") {
-    result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
+              result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
     
             for (let i = 0; i < result.data.length; i++) {
                 $('.locationSelector').append($('<option>', {
@@ -440,15 +441,23 @@ $('#myTable tbody').on( 'click', '#editButton', function (e) {
 
       //  if (result.status.name == "ok") {
   
-        console.log(result.data[3].id)
+        console.log(result)
         for (let i=0; result.data.length; i++){
           if (result.data[i].id === rowInfo[0].innerHTML){
-            console.log(result.data[i].email)
+            console.log(result.data[i].department)
             $('#editId').val(result.data[i].id)
             $('#editFirstName').val(result.data[i].firstName)
             $('#editLastName').val(result.data[i].lastName)
             $('#editEmail').val(result.data[i].email)
-            $('#editDepartment  option:selected').text(result.data[i].department)
+            
+           // $('#editDepartment option:selected').prop()
+           $('#editDepartment option').each(function(){
+           if($(this).text() == result.data[i].department){
+             $(this).attr('selected', 'selected')
+           }
+          })
+          
+          
           }
         }
         
@@ -576,7 +585,14 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
               console.log(result.data[j])
               $('#editDepartmentId').val(result.data[j].id)
               $('#editDepartmentName').val(result.data[j].name)
-              $('#editDepartmentLocation  option:selected').text(result.data[j].location)
+                // $('#editDepartment option:selected').prop()
+           $('#editDepartmentLocation option').each(function(){
+            if($(this).text() == result.data[j].location){
+              $(this).attr('selected', 'selected')
+            }
+           })
+              //$('#editDepartmentLocation  option:selected').text()
+              
             
             }
           }
