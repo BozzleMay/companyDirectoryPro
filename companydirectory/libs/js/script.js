@@ -48,7 +48,7 @@ $(window).on('load', function () {
           success: function (result) {
       
               //  if (result.status.name == "ok") {
-      
+      result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
       
               for (let i = 0; i < result.data.length; i++) {
                   $('.department').append($('<option>', {
@@ -80,7 +80,7 @@ $(window).on('load', function () {
         success: function (result) {
     
             //  if (result.status.name == "ok") {
-    
+    result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
     
             for (let i = 0; i < result.data.length; i++) {
                 $('.locationSelector').append($('<option>', {
