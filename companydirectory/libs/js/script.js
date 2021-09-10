@@ -449,6 +449,7 @@ $('#myTable tbody').on( 'click', '#editButton', function (e) {
             $('#editFirstName').val(result.data[i].firstName)
             $('#editLastName').val(result.data[i].lastName)
             $('#editEmail').val(result.data[i].email)
+		  $('#editJob').val(result.data[i].jobTitle)
             
            // $('#editDepartment option:selected').prop()
            $('#editDepartment option').each(function(){
