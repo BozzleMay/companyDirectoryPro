@@ -31,7 +31,7 @@
           success: function (result) {
       
               //  if (result.status.name == "ok") {
-      
+      result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
       
               for (let i = 0; i < result.data.length; i++) {
                   $('.department').append($('<option>', {
@@ -63,7 +63,7 @@
         success: function (result) {
     
             //  if (result.status.name == "ok") {
-    
+    result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
     
             for (let i = 0; i < result.data.length; i++) {
                 $('.locationSelector').append($('<option>', {
