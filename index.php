@@ -26,15 +26,24 @@
 </head>
 <body>
     <div class='se-pre-con'></div>
-    <header class='navbar'>
+    <header class='navbar sticky-top'>
     
 
           <div class="container-fluid">
             <h2>Company Directory</h2>
           <div class='header__icons'>
-          <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id='employees__show'>Employees</button>
-          <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id="departments__show">Departments</button>
-          <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id='locations__show'>Locations</button>
+            <button type='button' id="employeeSearchButton" class="btn btn-light btn-square-md tableSel" ><i class="fa fa-search"></i> </button>
+            <button type='button' id="employeeAddButton" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> </button> 
+            <button type='button' style="display:none;" id="departmentSearchButton" class="btn btn-light btn-square-md tableSel" ><i class="fa fa-search"></i> </button>
+            <button type='button' style="display:none;" id="departmentAddButton" class="btn btn-light btn-square-md tableSel" data-toggle="modal" data-target="#addDepartmentModal"><i class="fa fa-plus"></i> </button>
+            <button type='button' style="display:none;" id="locationSearchButton" class="btn btn-light btn-square-md tableSel" ><i class="fa fa-search"></i> </button>
+                <button type='button' style="display:none;" id='locationAddButton' class="btn btn-light btn-square-md tableSel" data-toggle="modal" data-target="#addLocationModal"><i class="fa fa-plus"></i> </button> 
+                        
+                        
+                        <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id='employees__show'><i class="fa fa-user"></i></button>
+          <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id="departments__show"><i class="fa fa-building-o"></i></button>
+          <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id='locations__show'>	
+            <i class="fa fa-globe"></i></button>
        
     </div>
     </div>
@@ -42,14 +51,14 @@
 </header>
    <div id='emp' class='container'>
        <div class='addDeetsButton'>
-    <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> </button> 
-    <button type='button' id="employeeSearchButton" class="btn btn-secondary pull-right" ><i class="fa fa-search"></i> </button>
+    
        <form style="display:none;" id='employeeSearchForm' action="#" method="get" onsubmit="return false;">
         
             
         <input class='form-control' type="text" placeholder="Search" aria-hidden="true" size="30" name="q" id="q" value="" onkeyup="doSearch();" />
         </div>
         </form>
+        <div class="tableContainer">
                     <table id="myTable" class="sortable table table-bordered table-hover">
                          <thead>
                              <tr>
@@ -72,16 +81,18 @@
                          </tbody>
                          <p id="noResults" class="searchres">No Results - Please Search Again</p>
                      </table>
-               
+                    </div>
                     </div>
                     <div class='container' id="department_wrapper" >
                         <div class='addDeetsButton'>
-                        <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#addDepartmentModal"><i class="fa fa-plus"></i> </button> 
+                         
                         </div>
-                        <button type='button' id="departmentSearchButton" class="btn btn-secondary pull-right" ><i class="fa fa-search"></i> </button>
+
+               
                         <form style="display:none;" id='departmentSearchForm' action="#" method="get" onsubmit="return false;">
                             <input type="text" class='form-control' placeholder="Search" size="30" name="dq" id="dq" value="" onkeyup="departmentSearch();" />
                             </form>
+                            <div class="tableContainer">
                         <table id="departmentTable" class="sortable table table-bordered table-hover">
                              <thead>
                                  <tr>
@@ -103,11 +114,10 @@
                              <p id="noDepartmentResults" class='searchres' >No Results - Please Search Again</p>                         
                          </table>
                         </div>
+                        </div>
                         <div class='container' id="location_wrapper">
                         <div class='addDeetsButton'>
-                            <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#addLocationModal"><i class="fa fa-plus"></i> </button> 
-                        </div>
-                        <button type='button' id="locationSearchButton" class="btn btn-secondary pull-right" ><i class="fa fa-search"></i> </button>
+                            </div>
                         <form style="display:none;" id='locationSearchForm' action="#" method="get" onsubmit="return false;">
                             
                             <input type="text" class='form-control' placeholder="Search" size="30" name="eq" id="eq" value="" onkeyup="locationSearch();" />
@@ -323,7 +333,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                   
-                                    <p>Please edit the input values and submit to update the employee record.</p>
+                                    
                                     <form action="companydirectory/libs/php/updatePersonnel.php" method="post">
                                         <div class="form-group idman">
                                             <label>id</label>
@@ -390,7 +400,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                       
-                                        <p>Please edit the input values and submit to update the department record.</p>
+                                       
                                         <form action="companydirectory/libs/php/updateDepartment.php" method="post">
                                             <div class="form-group idman">
                                                 <label>id</label>
@@ -446,7 +456,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                               
-                                                                <p>Please edit the input values and submit to update the employee record.</p>
+                                                              
                                                                 <form action="companydirectory/libs/php/updateLocation.php" method="post">
                                                                     <div class="form-group idman">
                                                                         <label>id</label>
