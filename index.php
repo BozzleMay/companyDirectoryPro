@@ -492,7 +492,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="mt-5 mb-3">Delete Record</h2>
+                    <h2 class="mt-5 mb-3"></h2>
                     <form action="companydirectory/libs/php/deletePersonnelByID.php" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="id" id="deleter" value=""/>
@@ -516,7 +516,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                            <h2 class="mt-5 mb-3 deleteRecordSign"></h2>
                             <form action="companydirectory/libs/php/deleteLocation.php" method="post">
                                 <div class="alert alert-danger">
                                     <input type="hidden" name="id" id='deleterLoc' value=""/>
@@ -539,7 +539,7 @@
                          <div class="container-fluid">
                              <div class="row">
                                  <div class="col-md-12">
-                                     <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                                     <h2 class="mt-5 mb-3 deleteRecordSign"></h2>
                                      <form action="companydirectory/libs/php/deleteDepartmentByID.php" method="post" role="form">
                                          <div class="alert alert-danger">
                                              <input type="hidden" name="id" id='deleterDep' value=""/>
@@ -562,7 +562,7 @@
                                      <div class="container-fluid">
                                          <div class="row">
                                              <div class="col-md-12">
-                                                 <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                                                 <h2 class="mt-5 mb-3 deleteRecordSign"></h2>
                                                  
                                                      <div class="alert alert-danger">
                                                          
@@ -585,7 +585,7 @@
                                                  <div class="container-fluid">
                                                      <div class="row">
                                                          <div class="col-md-12">
-                                                             <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                                                             <h2 class="mt-5 mb-3 deleteRecordSign"></h2>
                                                              
                                                                  <div class="alert alert-danger">
                                                                      
