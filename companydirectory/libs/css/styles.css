@@ -204,3 +204,7 @@ tr:hover {
     flex-direction: column;
   }
 }
+.alert {
+  position: absolute;
+  top: 40vh;
+}
