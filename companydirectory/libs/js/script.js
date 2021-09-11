@@ -2,7 +2,8 @@ $(window).on('load', function () {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");;
 });
-       
+
+                                      
        $(document).ready(function (){
        
         
@@ -24,17 +25,36 @@ $(window).on('load', function () {
             $("#department_wrapper").hide();
             $("#emp").show();
             $("#location_wrapper").hide();
+            $('#employeeSearchButton').show()
+            $('#employeeAddButton').show()
+            $('#departmentAddButton').hide()
+            $('#departmentSearchButton').hide()
+            $('#locationSearchButton').hide()
+            $('#locationAddButton').hide()  
             
           });
           $("#departments__show").click(function(){
             $("#emp").hide();
             $("#location_wrapper").hide();
             $("#department_wrapper").show();
+            $('#employeeSearchButton').hide()
+            $('#employeeAddButton').hide()
+            $('#departmentSearchButton').show()
+            $('#departmentAddButton').show()
+            $('#locationSearchButton').hide()
+            $('#locationAddButton').hide()
+            
           });
           $("#locations__show").click(function(){
             $("#emp").hide();
             $("#department_wrapper").hide();
             $("#location_wrapper").show();
+            $('#locationSearchButton').show()
+            $('#locationAddButton').show()
+            $('#employeeSearchButton').hide()
+            $('#employeeAddButton').hide()
+            $('#departmentSearchButton').hide()
+            $('#departmentAddButton').hide()
           });
 
 
@@ -130,7 +150,7 @@ $(window).on('load', function () {
            
             console.log(result)
            
-              let sortedArray = []
+            result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
               for (let i = 0; i < result.data.length; i++) {
                   
                         
@@ -141,7 +161,7 @@ $(window).on('load', function () {
                 row.append('<td class="sorting_1">' + result.data[i].name + '</td>');
                 row.append('<td class="sorting_1">' + result.data[i].location + '</td>');
                 row.append("<td style='display:none;'>" + result.data[i].id + '</td>');
-                row.append("<td><div style='display:inline-block;'> <button class='btn' id='viewDepartmentButton' data-toggle='modal' data-target='#viewDepartmentModal'><i class='fa fa-eye text-warning'></i></button><button class='btn' id='editDepartmentButton' data-toggle='modal' data-target='#editDepartmentModal'><i class='fa fa-pencil text-primary'></i></button><button class='btn' id='deleteDepartmentButton' data-toggle='modal' data-target='#deleteDepartmentModal'><i class='fa fa-trash text-danger'></i></button></div></td>")
+                row.append("<td><div style='display:inline-block;'> <button class='btn needBlur' id='viewDepartmentButton' data-toggle='modal' data-target='#viewDepartmentModal'><i class='fa fa-eye text-warning'></i></button><button class='btn needBlur' id='editDepartmentButton' data-toggle='modal' data-target='#editDepartmentModal'><i class='fa fa-pencil text-primary'></i></button><button class='btn needBlur' id='deleteDepartmentButton' data-toggle='modal' data-target='#deleteDepartmentModal'><i class='fa fa-trash text-danger'></i></button></div></td>")
                 
 
                 $('#departmentTable').append(row)
@@ -180,7 +200,8 @@ $(window).on('load', function () {
    
     
     
-      
+                                       
+                                       
    
   
 
@@ -193,9 +214,9 @@ $(window).on('load', function () {
     success: function (result) {
       
         //  if (result.status.name == "ok") {
+          result.data.sort(function(a,b){ return a.lastName.localeCompare(b.lastName); });
+        console.log(result.data)
         
-        console.log(result)
-       
           for (let i = 0; i < result.data.length; i++) {
 
             var row = $('<tr class="odd">');
@@ -247,7 +268,7 @@ $.ajax({
       //  if (result.status.name == "ok") {
      
       console.log(result)
-    
+      result.data.sort(function(a,b){ return a.name.localeCompare(b.name); });
         for (let i = 0; i < result.data.length; i++) {
                           
           var row = $('<tr class="odd">');
@@ -441,16 +462,17 @@ $('#myTable tbody').on( 'click', '#editButton', function (e) {
 
       //  if (result.status.name == "ok") {
   
-        console.log(result)
-        for (let i=0; result.data.length; i++){
-          if (result.data[i].id === rowInfo[0].innerHTML){
+        console.log(result.data.length)
+        for (let i=0; i < result.data.length; i++){
+          
+          if (result.data[i].id == rowInfo[0].innerHTML){
+            
             console.log(result.data[i].department)
             $('#editId').val(result.data[i].id)
             $('#editFirstName').val(result.data[i].firstName)
             $('#editLastName').val(result.data[i].lastName)
             $('#editEmail').val(result.data[i].email)
-		  $('#editJob').val(result.data[i].jobTitle)
-            
+            $('#editJob').val(result.data[i].jobTitle)
            // $('#editDepartment option:selected').prop()
            $('#editDepartment option').each(function(){
            if($(this).text() == result.data[i].department){
@@ -581,7 +603,7 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
         //  if (result.status.name == "ok") {
     
           console.log(result)
-          for (let j=0; result.data.length; j++){
+          for (let j=0; j < result.data.length; j++){
             if (result.data[j].id === rowInfo[2].innerHTML){
               console.log(result.data[j])
               $('#editDepartmentId').val(result.data[j].id)
@@ -732,7 +754,7 @@ $('#departmentTable tbody').on( 'click', '#viewDepartmentButton', function (e) {
           //  if (result.status.name == "ok") {
       
             console.log(result.data.length)
-            for (let k=0; result.data.length; k++){
+            for (let k=0; k < result.data.length; k++){
               if (result.data[k].name === rowInfo[0].innerHTML){
                 console.log(result.data[k])
                 $('#editPlaceName').val(result.data[k].name )
