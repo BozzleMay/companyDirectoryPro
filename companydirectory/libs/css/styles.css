@@ -22,10 +22,20 @@ h4 {
 .modal-header {
   background-color: #e0b0ff;
 }
+
 .table {
-  max-width: 100%;
+  width: 100%;
   margin: auto;
   margin-top: 1rem;
+}
+.tableContainer {
+  display: block;
+  overflow-x: auto;
+  height: 80vh;
+}
+.btn:focus {
+  outline: none;
+  box-shadow: none;
 }
 .employee-data {
   max-width: 80%;
@@ -40,7 +50,6 @@ h2 {
 }
 .header__icons {
   display: flex;
-  color: red !important;
 }
 #location_wrapper {
   display: none;
@@ -68,6 +77,10 @@ ul {
 }
 table.dataTable tbody tr {
   white-space: nowrap;
+}
+#mytable tbody {
+  max-height: 10px;
+  overflow-y: scroll;
 }
 .addFooter {
   display: flex;
@@ -132,6 +145,9 @@ table.dataTable tbody tr {
 }
 thead {
   background-color: lavender;
+
+  position: sticky;
+  top: 0;
 }
 tr:hover {
   background-color: lavender;
@@ -159,11 +175,7 @@ tr:hover {
   z-index: 9999;
   background: url("../assets/Preloader_11.gif") center no-repeat #fff;
 }
-#departmentSearchButton,
-#locationSearchButton,
-#employeeSearchButton {
-  margin-right: 0.4em;
-}
+
 .modal-footer {
   justify-content: flex-end !important;
   align-items: flex-start !important;
