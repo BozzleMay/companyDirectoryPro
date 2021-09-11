@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-   
+    <script src="companydirectory/libs/js/sorttable.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
     <link rel="stylesheet" href="companydirectory/libs/css/styles.css" type='text/css'>
-   
+    
     
  
     <style>
@@ -20,45 +20,55 @@
    
         
     
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-        
+       
     </style>
  
 </head>
 <body>
-<nav class="navbar">
+    <div class='se-pre-con'></div>
+    <header class='navbar sticky-top'>
+    
+
           <div class="container-fluid">
             <h2>Company Directory</h2>
           <div class='header__icons'>
-          <button type="button" class="btn btn-light btn-square-md" data-mdb-ripple-color="dark" id='employees__show'>Employees</button>
-          <button type="button" class="btn btn-light btn-square-md" data-mdb-ripple-color="dark" id="departments__show">Departments</button>
-          <button type="button" class="btn btn-light btn-square-md" data-mdb-ripple-color="dark" id='locations__show'>Locations</button>
+            <button type='button' id="employeeSearchButton" class="btn btn-light btn-square-md tableSel" ><i class="fa fa-search"></i> </button>
+            <button type='button' id="employeeAddButton" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> </button> 
+            <button type='button' style="display:none;" id="departmentSearchButton" class="btn btn-light btn-square-md tableSel" ><i class="fa fa-search"></i> </button>
+            <button type='button' style="display:none;" id="departmentAddButton" class="btn btn-light btn-square-md tableSel" data-toggle="modal" data-target="#addDepartmentModal"><i class="fa fa-plus"></i> </button>
+            <button type='button' style="display:none;" id="locationSearchButton" class="btn btn-light btn-square-md tableSel" ><i class="fa fa-search"></i> </button>
+                <button type='button' style="display:none;" id='locationAddButton' class="btn btn-light btn-square-md tableSel" data-toggle="modal" data-target="#addLocationModal"><i class="fa fa-plus"></i> </button> 
+                        
+                        
+                        <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id='employees__show'><i class="fa fa-user"></i></button>
+          <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id="departments__show"><i class="fa fa-building-o"></i></button>
+          <button type="button" class="btn btn-light btn-square-md tableSel" data-mdb-ripple-color="dark" id='locations__show'>	
+            <i class="fa fa-globe"></i></button>
        
     </div>
     </div>
-</nav>
+
+</header>
    <div id='emp' class='container'>
        <div class='addDeetsButton'>
-    <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add New Employee </button> 
-       
-       <form action="#" method="get" onsubmit="return false;">
+    
+       <form style="display:none;" id='employeeSearchForm' action="#" method="get" onsubmit="return false;">
         
             
-        <input type="text" placeholder="Search" aria-hidden="true" size="30" name="q" id="q" value="" onkeyup="doSearch();" />
+        <input class='form-control' type="text" placeholder="Search" aria-hidden="true" size="30" name="q" id="q" value="" onkeyup="doSearch();" />
         </div>
         </form>
-                    <table id="myTable" class="table table-bordered table-hover">
+        <div class="tableContainer">
+                    <table id="myTable" class="sortable table table-bordered table-hover">
                          <thead>
                              <tr>
                                 <th style="display:none;">id</th>
-                                 <th >First Name</th>
-                                 <th>Last Name</th>
-                                 <th>Email</th>
-                                 <th>Department</th>
-                                 <th>Interactions</th>
+                                 <th class='priority-1'>First Name</th>
+                                 <th class='priority-1'>Last Name</th>
+                                 <th class='priority-6'>Name</th>
+                                 <th class='priority-5'>Email</th>
+                                 <th class='priority-4'>Department</th>
+                                 <th></th>
                                 
                              </tr>
                          </thead>
@@ -71,23 +81,25 @@
                          </tbody>
                          <p id="noResults" class="searchres">No Results - Please Search Again</p>
                      </table>
-               
+                    </div>
                     </div>
                     <div class='container' id="department_wrapper" >
                         <div class='addDeetsButton'>
-                        <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#addDepartmentModal"><i class="fa fa-plus"></i> Add New Department </button> 
+                         
                         </div>
-                        <form action="#" method="get" onsubmit="return false;">
-                            <input type="text" placeholder="Search" size="30" name="dq" id="dq" value="" onkeyup="departmentSearch();" />
+
+               
+                        <form style="display:none;" id='departmentSearchForm' action="#" method="get" onsubmit="return false;">
+                            <input type="text" class='form-control' placeholder="Search" size="30" name="dq" id="dq" value="" onkeyup="departmentSearch();" />
                             </form>
-                        <table id="departmentTable" class="table table-bordered table-hover">
+                            <div class="tableContainer">
+                        <table id="departmentTable" class="sortable table table-bordered table-hover">
                              <thead>
                                  <tr>
                                      
-                                     <th id='dephead'>Department</th>
-                                  <!--   <th>Interactions</th> -->
+                                     <th>Department</th>
                                      <th>Location</th>
-                                     <th>Interactions</th> 
+                                     <th></th> 
                                  </tr>
                              </thead>
                              <tbody>
@@ -102,22 +114,23 @@
                              <p id="noDepartmentResults" class='searchres' >No Results - Please Search Again</p>                         
                          </table>
                         </div>
+                        </div>
                         <div class='container' id="location_wrapper">
                         <div class='addDeetsButton'>
-                            <button type='button' class="btn btn-success pull-right" data-toggle="modal" data-target="#addLocationModal"><i class="fa fa-plus"></i> Add New Location </button> 
-                        </div>
-                        <form action="#" method="get" onsubmit="return false;">
+                            </div>
+                        <form style="display:none;" id='locationSearchForm' action="#" method="get" onsubmit="return false;">
                             
-                            <input type="text" placeholder="Search" size="30" name="eq" id="eq" value="" onkeyup="locationSearch();" />
+                            <input type="text" class='form-control' placeholder="Search" size="30" name="eq" id="eq" value="" onkeyup="locationSearch();" />
                             </form>
-                            <table id="locationTable" class="table table-bordered table-hover">
+                            <table id="locationTable" class="sortable table table-bordered table-hover">
                                  <thead>
                                      <tr>
                                          
-                                         <th>Location ID</th>
+                                         
                                       <!--   <th>Interactions</th> -->
                                          <th>Location</th>
-                                         <th>Interactions</th> 
+                                         
+                                         <th></th> 
                                      </tr>
                                  </thead>
                                  <tbody>
@@ -193,7 +206,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Departments</label>
-                                                            <b id='viewDepsInLocation'><ul class ="box"></ul></b>
+                                                            <p id='viewDepsInLocation'><ul class ="box"></ul></p>
                                                         </div>
                                                 
                                                         
@@ -212,7 +225,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                               <div class="modal-content viewCard">
                                 <div class="card  mb-3">
-                                    <h4 class="card-header">Location Details</h4>
+                                    <h4 class="card-header">Department Details</h4>
                                     <div class="card-body">
                                         <div class="wrapper_see">
                                             <div class="container-fluid">
@@ -293,9 +306,10 @@
                         
                                  
                                                 </div>
-                                                <div class='addFooter'>
-                                                <input type="submit" class="btn btn-primary pull-right" value="Submit">
-                                                <a href="index.php" class="btn btn-secondary ml-2 pull-right">Cancel</a>
+                                                <div class='modal-footer'>
+                                                    <button type='button' data-dismiss="modal"  value='No' class="btn btn-secondary">Cancel</button>
+                                                <button type="submit" class="btn btn-primary pull-right" value="Submit">Submit</button>
+                                                
                                                 </div>
                                             </form>
                                         </div>
@@ -317,9 +331,9 @@
                     <div class="wrapper">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-12">
                                   
-                                    <p>Please edit the input values and submit to update the employee record.</p>
+                                    
                                     <form action="companydirectory/libs/php/updatePersonnel.php" method="post">
                                         <div class="form-group idman">
                                             <label>id</label>
@@ -354,8 +368,8 @@
                           </select>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                            <input type='submit' value='Submit' class="btn btn-success">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal"> Cancel</button>
+                                            <button type='submit' value='Submit' class="btn btn-success">Submit</button>
                                         </form>
                                         </div>
                                                                     
@@ -384,9 +398,9 @@
                         <div class="wrapper">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-md-12">
                                       
-                                        <p>Please edit the input values and submit to update the department record.</p>
+                                       
                                         <form action="companydirectory/libs/php/updateDepartment.php" method="post">
                                             <div class="form-group idman">
                                                 <label>id</label>
@@ -408,8 +422,8 @@
                               </select>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                                <input type='submit' value='Submit' class="btn btn-success">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel</button>
+                                                <button type='submit' value='Submit' class="btn btn-success">Submit</button>
                                             </form>
                                             </div>
                                                                         
@@ -440,9 +454,9 @@
                                                 <div class="wrapper">
                                                     <div class="container-fluid">
                                                         <div class="row">
-                                                            <div class="col-md-9">
+                                                            <div class="col-md-12">
                                                               
-                                                                <p>Please edit the input values and submit to update the employee record.</p>
+                                                              
                                                                 <form action="companydirectory/libs/php/updateLocation.php" method="post">
                                                                     <div class="form-group idman">
                                                                         <label>id</label>
@@ -464,8 +478,8 @@
                                                 </div>
                                                            
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                    <input type='submit' value='Submit' class="btn btn-success">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancel</button>
+                    <button type='submit' value='Submit' class="btn btn-success">Submit</button>
                 </form>
                 </div>
                                             
@@ -474,7 +488,7 @@
     </div>
     <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         
-    <div class="wrapper" >
+    <div class="deleteWrapper" >
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -498,7 +512,7 @@
                </div>
                <div class="modal" id="deleteLocationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 
-               <div class="wrapper" >
+               <div class="deleteWrapper" >
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
@@ -521,17 +535,17 @@
                        </div>
                        <div class="modal" id="deleteDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         
-                        <div class="wrapper" >
+                        <div class="deleteWrapper" >
                          <div class="container-fluid">
                              <div class="row">
                                  <div class="col-md-12">
                                      <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
-                                     <form action="companydirectory/libs/php/deleteDepartmentById.php" method="post">
+                                     <form action="companydirectory/libs/php/deleteDepartmentByID.php" method="post" role="form">
                                          <div class="alert alert-danger">
                                              <input type="hidden" name="id" id='deleterDep' value=""/>
                                              <p id='depWarningMessage'>Are you sure you want to delete this Department?</p>
                                              <p>
-                                                 <input id='deleteDepartmentOptions' type="submit" value="Yes" class="btn btn-danger">
+                                                 <button id='deleteDepartmentOptions' type="submit" value="Yes" class="btn btn-danger">Yes</button>
                                                  <button type='button' id='closeDepDeleteModal' data-dismiss="modal"  value='No' class="btn btn-secondary">No</button>
                                              </p>
                                          </div>
@@ -542,6 +556,53 @@
                          </div>
                      </div>
                                 </div>
+                                <div class="modal" id="deleteDepartmentNoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        
+                                    <div class="deleteWrapper" >
+                                     <div class="container-fluid">
+                                         <div class="row">
+                                             <div class="col-md-12">
+                                                 <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                                                 
+                                                     <div class="alert alert-danger">
+                                                         
+                                                         <p id='depWarningMessage'>This department has employees linked to it. Please remove any linked employees before you attempt to delete.</p>
+                                                         <p>
+                                                             
+                                                             <button type='button' id='closeDepDeleteModal' data-dismiss="modal"  value='No' class="btn btn-secondary">Close</button>
+                                                         </p>
+                                                     </div>
+                                                 
+                                             
+                                             </div>
+                                         </div>        
+                                     </div>
+                                 </div>
+                                            </div>
+                                            <div class="modal" id="deleteLocationNoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        
+                                                <div class="deleteWrapper" >
+                                                 <div class="container-fluid">
+                                                     <div class="row">
+                                                         <div class="col-md-12">
+                                                             <h2 class="mt-5 mb-3 deleteRecordSign">Delete Record</h2>
+                                                             
+                                                                 <div class="alert alert-danger">
+                                                                     
+                                                                     <p id='depWarningMessage'>This location has departments linked to it. Please remove any linked departments before you attempt to delete.</p>
+                                                                     <p>
+                                                                         
+                                                                         <button type='button' id='closeDepDeleteModal' data-dismiss="modal"  value='No' class="btn btn-secondary">Close</button>
+                                                                     </p>
+                                                                 </div>
+                                                             
+                                                         
+                                                         </div>
+                                                     </div>        
+                                                 </div>
+                                             </div>
+                                                        </div>
+                           
                
               
               <!-- Modal -->
@@ -568,9 +629,11 @@
                                     <option value="">Select A Location</option>
                         
                                   </select>
-                                
-                            <input type="submit" class="btn btn-primary" value="Submit">
-                                                <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                                <div class='modal-footer'>
+                                    <button type='button' data-dismiss="modal"  value='No' class="btn btn-secondary">Cancel</button>
+                            <button input type="submit" class="btn btn-primary" value="Submit">Submit</button>
+                            
+                                            </div>
                         </form>
                     </div>
                    </div>
@@ -598,9 +661,10 @@
                                     <input type="text" name="locations" id="addLocation" class="form-control" required>
                                     <span class="invalid-feedback"></span>
                                 </div>
-                                <div class='addFooter'>
-                                <input type="submit" class="btn btn-primary" value="Submit">
-                                <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                                <div class='modal-footer'>
+                                    <button type='button' data-dismiss="modal"  value='No' class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+                              
                                 </div>
                                 </form>
                             </div>
@@ -623,8 +687,8 @@
                   console.log(rows.length)
                   let firstName = fullname[1].innerHTML.toLowerCase();
                   let surName = fullname[2].innerHTML.toLowerCase();
-                  let searchEmail = fullname[3].innerHTML.toLowerCase();
-                  let searchDepar = fullname[4].innerHTML.toLowerCase();
+                  let searchEmail = fullname[4].innerHTML.toLowerCase();
+                  let searchDepar = fullname[5].innerHTML.toLowerCase();
                   
           
 
@@ -666,8 +730,8 @@
                 for ( var i = 2; i < rows.length; i++ ) {
                   var departmentName = rows[i].getElementsByTagName("td");
                  
-                  let department = departmentName[1].innerHTML.toLowerCase()
-                  let location = departmentName[2].innerHTML.toLowerCase()
+                  let department = departmentName[0].innerHTML.toLowerCase()
+                  let location = departmentName[1].innerHTML.toLowerCase()
                     
 
                   if ( departmentName ) {
@@ -699,7 +763,7 @@
                 for ( var i = 2; i < rows.length; i++ ) {
                   var locationName = rows[i].getElementsByTagName("td");
                  
-                  let location = locationName[1].innerHTML.toLowerCase()
+                  let location = locationName[0].innerHTML.toLowerCase()
                   
                   
                     
