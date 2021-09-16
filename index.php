@@ -12,7 +12,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
     <link rel="stylesheet" href="companydirectory/libs/css/styles.css" type='text/css'>
-    
+    <link rel="icon" type="image/png" href="companydirectory/libs/assets/favicon.png"/>
     
  
     <style>
