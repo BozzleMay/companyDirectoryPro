@@ -7,12 +7,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="companydirectory/libs/js/sorttable.js" type="text/javascript"></script>
+    <!-- <script src="https://github.com/SortableJS/Sortable" type="text/javascript"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   
     <link rel="stylesheet" href="companydirectory/libs/css/styles.css" type='text/css'>
-    <link rel="icon" type="image/png" href="companydirectory/libs/assets/favicon.png"/>
+    <!-- <link rel="icon" type="image/png" href="companydirectory/libs/assets/favicon.png"/> -->
     
     
     
@@ -56,7 +56,6 @@
     
        <form style="display:none;" id='employeeSearchForm' action="#" method="get" onsubmit="return false;">
         
-            
         <input class='form-control' type="text" placeholder="Search" aria-hidden="true" size="30" name="q" id="q" value="" onkeyup="doSearch();" />
         </div>
         </form>
